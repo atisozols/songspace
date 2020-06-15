@@ -18,7 +18,7 @@
                 </div>
             @endforeach
         @else
-            <p>No Libraries Found</p>
+            <p>No Songs Found</p>
         @endif
     </div>
 @endsection

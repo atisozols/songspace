@@ -13,17 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function(){
+    if(Auth::check()){
+        return redirect('/home');
+    }
+    return view('welcome');
+});
+
+Route::get('/home', 'HomeController@index')->middleware('auth');
 
 Route::get('/top', 'TopController@index');
 
-Route::get('/song/create', 'SongController@create');
+Route::get('/song/create', 'SongController@create')->middleware('auth');
 
-Route::post('/song', 'SongController@store');
+Route::post('/song', 'SongController@store')->middleware('auth');
 
-Route::post('/library', 'LibraryController@store');
+Route::post('/library', 'LibraryController@store')->middleware('auth');
 
-Route::get('/library/create', 'LibraryController@create');
+Route::get('/library/create', 'LibraryController@create')->middleware('auth');
 
 Route::get('/song/{song}', 'SongController@show');
 

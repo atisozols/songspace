@@ -33,6 +33,6 @@ class LibraryController extends Controller
         $library->user_id = $id;
         $library->save();
 
-        return redirect('/')->with('success','Library Created');
+        return redirect('/home')->with('success','Library Created');
     }
 }
