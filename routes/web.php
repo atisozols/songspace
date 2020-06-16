@@ -28,14 +28,24 @@ Route::get('/song/create', 'SongController@create')->middleware('auth');
 
 Route::post('/song', 'SongController@store')->middleware('auth');
 
+Route::put('/song/{song}', 'SongController@update');
+
+Route::delete('/song/{song}', 'SongController@destroy');
+
 Route::post('/library', 'LibraryController@store')->middleware('auth');
 
 Route::get('/library/create', 'LibraryController@create')->middleware('auth');
 
 Route::get('/song/{song}', 'SongController@show');
 
+Route::get('/song/{song}/edit', 'SongController@edit')->middleware('auth');
+
 Route::get('/library/{library}', 'LibraryController@show');
 
+Route::resource('/admin/users', 'Admin\UsersController', ['except'=>['show','create','store']]);
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+    Route::resource('/users', 'UsersController', ['except'=>['show','create','store']]);
+});
 
 
 Auth::routes();

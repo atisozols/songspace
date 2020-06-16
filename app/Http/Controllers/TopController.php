@@ -15,7 +15,7 @@ class TopController extends Controller
             ->join('libraries','libraries.user_id','=','users.id')
             ->join('songs','songs.library_id','=','libraries.id')
             ->select('users.username','users.id as uid','songs.title','songs.id as sid','songs.star_count')
-            ->orderBy('songs.star_count')
+            ->orderByDesc('songs.star_count')
             ->get();
         //dd($data);
         return view('top')->with('data',$data);

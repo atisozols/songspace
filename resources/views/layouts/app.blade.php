@@ -33,6 +33,9 @@
                 <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ url('/top') }}">
                     Top Songs
                 </a>
+                <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ route('admin.users.index') }}">
+                    User Management
+                </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
