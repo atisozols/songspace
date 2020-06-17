@@ -8,7 +8,7 @@
             <h5 class=" font-weight-light">By {{$data->username}} </h5>
             <h6 class="mb-3 font-weight-light">on {{$data->date}}</h6>
 
-            <p class="text-monospace font-weight-lighter">{{$data->lyrics}}</p>
+            <pre class="text-monospace font-weight-lighter">{{$data->lyrics}}</pre>
         </div>
     </div>
 

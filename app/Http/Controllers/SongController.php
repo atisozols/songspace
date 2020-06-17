@@ -130,7 +130,7 @@ class SongController extends Controller
         {
             $userId = Auth::user()->getId();
         }
-        if(($userId != $id) and (Gate::denies('admin')))
+        if(($userId != $data->uid) and (Gate::denies('admin')))
             return redirect('/');
 
         Storage::delete('public/audio_files/'.$song->audio);

@@ -50,7 +50,7 @@ class LibraryController extends Controller
         {
             $userId = Auth::user()->getId();
         }
-        if(($userId != $id) and (Gate::denies('admin')))
+        if(($userId != $library->user_id) and (Gate::denies('admin')))
             return redirect('/');
 
         $songs = Song::where('library_id','=',$id)->get();
