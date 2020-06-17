@@ -19,7 +19,6 @@ class CreateSongsTable extends Migration
             $table->string('title');
             $table->string('lyrics');
             $table->string('audio');
-            $table->integer('star_count');
             $table->timestamps();
         });
         Schema::table('songs', function (Blueprint $table) {

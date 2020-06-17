@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
@@ -17,7 +18,7 @@ class SongController extends Controller
             ->join('libraries','libraries.user_id','=','users.id')
             ->join('songs','songs.library_id','=','libraries.id')
             ->select('users.username','users.id as uid','songs.title as title',
-                'songs.id as sid','songs.star_count','audio','lyrics','songs.created_at as date')
+                'songs.id as sid','audio','lyrics','songs.created_at as date')
             ->where('songs.id','=',$id)
             ->first();
         //dd($song);
@@ -66,7 +67,6 @@ class SongController extends Controller
         $song->library_id = $library_id;
         $song->lyrics = $request -> input('lyrics');
         $song->audio = $fileNameToStore;
-        $song->star_count=0;
         $song->save();
 
         return redirect('/library/'.$library_id)->with('success','Song Added');
@@ -78,7 +78,7 @@ class SongController extends Controller
             ->join('libraries','libraries.user_id','=','users.id')
             ->join('songs','songs.library_id','=','libraries.id')
             ->select('users.username','users.id as uid','songs.title as title',
-                'songs.id as sid','songs.star_count','audio','lyrics','songs.created_at as date')
+                'songs.id as sid','audio','lyrics','songs.created_at as date')
             ->where('songs.id','=',$id)
             ->first();
         $song = Song::find($id);
@@ -122,7 +122,7 @@ class SongController extends Controller
             ->join('libraries','libraries.user_id','=','users.id')
             ->join('songs','songs.library_id','=','libraries.id')
             ->select('users.username','users.id as uid','songs.title as title',
-                'songs.id as sid','songs.star_count','audio','lyrics','songs.created_at as date')
+                'songs.id as sid','audio','lyrics','songs.created_at as date')
             ->where('songs.id','=',$id)
             ->first();
 
@@ -130,7 +130,7 @@ class SongController extends Controller
         {
             $userId = Auth::user()->getId();
         }
-        if($userId != $data->uid)
+        if(($userId != $id) and (Gate::denies('admin')))
             return redirect('/');
 
         Storage::delete('public/audio_files/'.$song->audio);

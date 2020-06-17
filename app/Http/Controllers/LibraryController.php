@@ -7,6 +7,7 @@ use App\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class LibraryController extends Controller
@@ -40,6 +41,27 @@ class LibraryController extends Controller
         $library->save();
 
         return redirect('/home')->with('success','Library Created');
+    }
+
+    public function destroy($id){
+        $library = Library::find($id);
+
+        if (Auth::check())
+        {
+            $userId = Auth::user()->getId();
+        }
+        if(($userId != $id) and (Gate::denies('admin')))
+            return redirect('/');
+
+        $songs = Song::where('library_id','=',$id)->get();
+
+        foreach ($songs as $song){
+            Storage::delete('public/audio_files/'.$song->audio);
+            $song->delete();
+        }
+
+        $library->delete();
+        return redirect('/home')->with('success', 'Library Deleted');
     }
 
 }

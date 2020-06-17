@@ -30,12 +30,10 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ url('/top') }}">
-                    Top Songs
+                <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ url('/discover') }}">
+                    Discover Songs
                 </a>
-                <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ route('admin.users.index') }}">
-                    User Management
-                </a>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -61,7 +59,11 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    @if((Gate::allows('admin')))
+                                        <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                            User Management
+                                        </a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

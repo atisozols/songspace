@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::get('/', function(){
 
 Route::get('/home', 'HomeController@index')->middleware('auth');
 
-Route::get('/top', 'TopController@index');
+Route::get('/discover', 'DiscoverController@index');
 
 Route::get('/song/create', 'SongController@create')->middleware('auth');
 
@@ -32,11 +33,15 @@ Route::put('/song/{song}', 'SongController@update');
 
 Route::delete('/song/{song}', 'SongController@destroy');
 
+Route::delete('/library/{library}', 'LibraryController@destroy');
+
 Route::post('/library', 'LibraryController@store')->middleware('auth');
 
 Route::get('/library/create', 'LibraryController@create')->middleware('auth');
 
 Route::get('/song/{song}', 'SongController@show');
+
+Route::get('/user/{user}', 'UserController@show');
 
 Route::get('/song/{song}/edit', 'SongController@edit')->middleware('auth');
 
