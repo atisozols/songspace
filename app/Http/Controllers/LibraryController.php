@@ -19,7 +19,17 @@ class LibraryController extends Controller
         }
         $library=Library::find($id);
         $songs=Song::where('library_id','=',$id)->get();
-        return view('library_show')->with('library',$library)->with('songs',$songs)->with('uid',$uid);
+        $ok = isset($uid);
+        if($ok)
+            return view('library_show')
+                ->with('library',$library)
+                ->with('songs',$songs)
+                ->with('uid',$uid)
+                ->with('ok',$ok);
+        return view('library_show')
+            ->with('library',$library)
+            ->with('songs',$songs)
+            ->with('ok',$ok);
     }
 
     public function create(){
@@ -40,7 +50,7 @@ class LibraryController extends Controller
         $library->user_id = $id;
         $library->save();
 
-        return redirect('/home')->with('success','Library Created');
+        return redirect('/home')->with('success',__('text.libsucc'));
     }
 
     public function destroy($id){
@@ -61,7 +71,7 @@ class LibraryController extends Controller
         }
 
         $library->delete();
-        return redirect('/home')->with('success', 'Library Deleted');
+        return redirect('/home')->with('success', __('text.libdel'));
     }
 
 }

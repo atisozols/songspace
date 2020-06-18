@@ -31,20 +31,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-item font-weight-bold text-dark pl-3" href="{{ url('/discover') }}">
-                    Discover Songs
+                    {{ __('text.discover') }}
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/lang/en') }}">EN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/lang/lv') }}">LV</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('text.login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('text.register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -57,11 +63,11 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('text.logout') }}
                                     </a>
                                     @if((Gate::allows('admin')))
                                         <a class="dropdown-item" href="{{ route('admin.users.index') }}">
-                                            User Management
+                                            {{ __('text.usermng') }}
                                         </a>
                                     @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

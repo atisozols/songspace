@@ -13,25 +13,25 @@
 
         {!! Form::open(['action' => ['SongController@update',$song->id], 'files' => true, 'method' => 'POST']) !!}
         <div class="form-group">
-            {!! Form::label('title', 'Title:', ['class' => 'col-lg-2 control-label']) !!}
+            {!! Form::label('title', __('text.title'), ['class' => 'col-lg-2 control-label']) !!}
             <div class="col-lg-4">
                 {!! Form::text('title', $song->title, ['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group">
-            {!! Form::label('lyrics', 'Lyrics:', ['class' => 'col-lg-2 control-label']) !!}
+            {!! Form::label('lyrics', __('text.lyrics'), ['class' => 'col-lg-2 control-label']) !!}
             <div class="col-lg-4">
                 {!! Form::textarea('lyrics', $song->lyrics, ['class' => 'form-control', 'rows' => 15]) !!}
             </div>
         </div>
         <div class="form-group">
-            {!! Form::label('library', 'Add to library:', ['class' => 'col-lg-2 control-label']) !!}
+            {!! Form::label('library', __('text.addtolib'), ['class' => 'col-lg-2 control-label']) !!}
             <div class="col-lg-4">
-                {!! Form::select('library', $libraries, $song->library_id, ['placeholder' => 'Pick a library...']) !!}
+                {!! Form::select('library', $libraries, $song->library_id, ['placeholder' => __('text.picklib')]) !!}
             </div>
         </div>
         {!! Form::hidden('_method','PUT') !!}
-        {!! Form::submit( 'Submit', ['class' => ['btn-dark', 'ml-3']]) !!}
+        {!! Form::submit( __('text.submit'), ['class' => ['btn-dark', 'ml-3']]) !!}
         {!! Form::close() !!}
 
     </div>

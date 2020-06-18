@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <h1 class="font-weight-light d-flex justify-content-center">All Songs</h1>
+    <h1 class="font-weight-light d-flex justify-content-center">{{__('text.all')}}</h1>
     <div class="list-group align-items-center">
         @foreach($data as $song)
             <div class="d-inline-flex">
-                <a href="/song/{{$song->sid}}">{{$song->title}}</a><p>&nbsp - &nbsp</p><a href="/user/{{$song -> uid}}">{{$song->username}}</a>
+                <h4 class="d-inline-flex"><a href="/song/{{$song->sid}}" class="font-weight-light text-dark">{{$song->title}}</a><p>&nbsp - &nbsp</p><a href="/user/{{$song -> uid}}" class="font-weight-light text-dark">{{$song->username}}</a></h4>
             </div>
         @endforeach
     </div>

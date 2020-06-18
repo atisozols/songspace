@@ -7,7 +7,7 @@
     <h1 class="font-weight-light d-flex justify-content-left ml-5">{{ $user->username }}</h1>
 
     <div class="list-group ml-lg-5 mt-lg-3">
-        <h3 class="font-weight-light">Libraries</h3>
+        <h3 class="font-weight-light">{{ __('text.lib') }}</h3>
         @if(count($libraries)>0)
             @foreach($libraries as $library)
                 <div class="well">
@@ -15,7 +15,7 @@
                 </div>
             @endforeach
         @else
-            <p>No Libraries Found</p>
+            <p>{{ __('text.nolib') }}</p>
         @endif
     </div>
 @endsection

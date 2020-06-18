@@ -69,7 +69,7 @@ class SongController extends Controller
         $song->audio = $fileNameToStore;
         $song->save();
 
-        return redirect('/library/'.$library_id)->with('success','Song Added');
+        return redirect('/library/'.$library_id)->with('success',__('text.sadded'));
     }
 
     public function edit($id)
@@ -113,7 +113,7 @@ class SongController extends Controller
         $song->lyrics = $request -> input('lyrics');
         $song->save();
 
-        return redirect('/library/'.$library_id)->with('success','Song Updated');
+        return redirect('/library/'.$library_id)->with('success',__('text.supdated'));
     }
 
     public function destroy($id){
@@ -135,6 +135,6 @@ class SongController extends Controller
 
         Storage::delete('public/audio_files/'.$song->audio);
         $song->delete();
-        return redirect('/home')->with('success', 'Song Deleted');
+        return redirect('/home')->with('success', __('text.sdel'));
     }
 }

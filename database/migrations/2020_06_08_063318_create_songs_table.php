@@ -17,7 +17,7 @@ class CreateSongsTable extends Migration
             $table->id();
             $table->integer('library_id')->unsigned();
             $table->string('title');
-            $table->string('lyrics');
+            $table->text('lyrics');
             $table->string('audio');
             $table->timestamps();
         });

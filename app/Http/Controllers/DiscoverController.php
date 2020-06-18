@@ -15,6 +15,7 @@ class DiscoverController extends Controller
             ->join('libraries','libraries.user_id','=','users.id')
             ->join('songs','songs.library_id','=','libraries.id')
             ->select('users.username','users.id as uid','songs.title','songs.id as sid')
+            ->orderByDesc('songs.created_at')
             ->get();
         //dd($data);
         return view('discover')->with('data',$data);
